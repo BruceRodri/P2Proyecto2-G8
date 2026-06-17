@@ -1,6 +1,6 @@
 const API_URL = 'http://localhost:3000/api/estadistica'
 
-export async function calculateStatistics(numeros) {
+export const calculateStatistics = async (numeros) => {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -12,7 +12,7 @@ export async function calculateStatistics(numeros) {
   return response.json()
 }
 
-export async function getStatisticsHistory(usuarioId) {
+export const getStatisticsHistory = async (usuarioId) => {
   const response = await fetch(`${API_URL}/historial/${usuarioId}`)
   if (!response.ok) {
     throw new Error('Error al obtener historial')

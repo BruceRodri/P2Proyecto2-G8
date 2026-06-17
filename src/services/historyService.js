@@ -1,6 +1,6 @@
-const API_URL = 'http://localhost:3000/api/historial'
+const API_URL = 'http://localhost:4000/api/historial'
 
-export async function getHistory(usuarioId) {
+export const getHistory = async (usuarioId) => {
   const response = await fetch(`${API_URL}/${usuarioId}`)
   if (!response.ok) {
     throw new Error('Error al obtener historial')
@@ -8,7 +8,7 @@ export async function getHistory(usuarioId) {
   return response.json()
 }
 
-export async function saveCalculation(usuarioId, tipoCalculo, datosIngresados, resultado) {
+export const saveCalculation = async (usuarioId, tipoCalculo, datosIngresados, resultado) => {
   const response = await fetch(API_URL, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -20,7 +20,7 @@ export async function saveCalculation(usuarioId, tipoCalculo, datosIngresados, r
   return response.json()
 }
 
-export async function deleteHistoryEntry(id) {
+export const deleteHistoryEntry = async (id) => {
   const response = await fetch(`${API_URL}/${id}`, {
     method: 'DELETE',
   })

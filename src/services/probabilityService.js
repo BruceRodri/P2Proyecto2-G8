@@ -1,6 +1,6 @@
 const API_URL = 'http://localhost:3000/api/probabilidad'
 
-export async function calculatePermutation(n, r) {
+export const calculatePermutation = async (n, r) => {
   const response = await fetch(`${API_URL}/permutacion`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -12,7 +12,7 @@ export async function calculatePermutation(n, r) {
   return response.json()
 }
 
-export async function calculateCombination(n, r) {
+export const calculateCombination = async (n, r) => {
   const response = await fetch(`${API_URL}/combinacion`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -24,7 +24,7 @@ export async function calculateCombination(n, r) {
   return response.json()
 }
 
-export async function calculateSimpleProbability(favorables, posibles) {
+export const calculateSimpleProbability = async (favorables, posibles) => {
   const response = await fetch(`${API_URL}/probabilidad-simple`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -36,7 +36,7 @@ export async function calculateSimpleProbability(favorables, posibles) {
   return response.json()
 }
 
-export async function getProbabilityHistory(usuarioId) {
+export const getProbabilityHistory = async (usuarioId) => {
   const response = await fetch(`${API_URL}/historial/${usuarioId}`)
   if (!response.ok) {
     throw new Error('Error al obtener historial')

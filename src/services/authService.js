@@ -1,38 +1,49 @@
-const API_URL = 'http://localhost:3000/api/usuarios'
+const API_URL = 'http://localhost:4000/api/usuarios'
 
-export async function registerUser(nombre, correo, contraseña) {
-  const response = await fetch(`${API_URL}/register`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ nombre, correo, contraseña }),
-  })
-  if (!response.ok) {
-    throw new Error('Error al registrar usuario')
+export const registerUser = async (nombre, correo, contraseña) => {
+  try {
+    const response = await fetch(`${API_URL}/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ nombre, correo, contraseña }),
+    })
+    if (!response.ok) {
+      const error = await response.json()
+      throw new Error(error.error || 'Error al registrar usuario')
+    }
+    return response.json()
+  } catch (error) {
+    console.error('Error en registerUser:', error)
+    throw error
   }
-  return response.json()
 }
 
-export async function loginUser(correo, contraseña) {
-  const response = await fetch(`${API_URL}/login`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ correo, contraseña }),
-  })
-  if (!response.ok) {
-    throw new Error('Credenciales inválidas')
+export const loginUser = async (correo, contraseña) => {
+  try {
+    const response = await fetch(`${API_URL}/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ correo, contraseña }),
+    })
+    if (!response.ok) {
+      throw new Error('Credenciales inválidas')
+    }
+    return response.json()
+  } catch (error) {
+    console.error('Error en loginUser:', error)
+    throw error
   }
-  return response.json()
 }
 
-export function logoutUser() {
+export const logoutUser = () => {
   localStorage.removeItem('mathstats_user')
 }
 
-export function getCurrentUser() {
+export const getCurrentUser = () => {
   const stored = localStorage.getItem('mathstats_user')
   return stored ? JSON.parse(stored) : null
 }
 
-export function setCurrentUser(user) {
+export const setCurrentUser = (user) => {
   localStorage.setItem('mathstats_user', JSON.stringify(user))
 }

@@ -11,8 +11,8 @@ const team = [
   {
     nombre: 'Andrés Ushiña',
     carrera: 'Ingeniería Tecnologías de la Información',
-    biografia: 'Hola que hace x2',
-    foto: 'https://i.pravatar.cc/150?u=diana',
+    biografia: 'Hola que tal, Buenas tardes',
+    foto: 'https://phantom-marca-mx.unidadeditorial.es/99be392fead427bead400f63d32480cb/resize/828/f/webp/mx/assets/multimedia/imagenes/2024/09/03/17253645500972.jpg',
   },
 ]
 
