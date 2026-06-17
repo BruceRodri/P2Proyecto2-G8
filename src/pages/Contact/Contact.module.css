@@ -9,3 +9,5 @@
 .card p { margin: 0; color: #888; }
 .link { color: #667eea; text-decoration: none; font-weight: 600; }
 .link:hover { text-decoration: underline; }
+.emailLink { display: block; color: #667eea; text-decoration: none; font-weight: 600; padding: 0.2rem 0; }
+.emailLink:hover { text-decoration: underline; }

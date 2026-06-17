@@ -4,7 +4,7 @@ import { FiLogIn } from 'react-icons/fi'
 import { loginUser, setCurrentUser } from '../../services/authService.js'
 import styles from './Login.module.css'
 
-export function Login() {
+export function Login({ onLogin }) {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
@@ -16,6 +16,7 @@ export function Login() {
     try {
       const user = await loginUser(correo, contraseña)
       setCurrentUser(user)
+      onLogin(user)
       navigate('/')
     } catch {
       setError('Credenciales inválidas')

@@ -6,14 +6,15 @@ export function Footer() {
   return (
     <footer className={styles.footer}>
       <div className={styles.container}>
-        <p className={styles.copy}>&copy; {year} MathStats. Todos los derechos reservados.</p>
+        <p className={styles.copy}>&copy; {year} MathStats. Todos los derechos reservados</p>
         <div className={styles.links}>
-          <a href="https://github.com" target="_blank" rel="noopener noreferrer" className={styles.link}>
+          <a href="https://github.com/BruceRodri/P2Proyecto2-G8" target="_blank" rel="noopener noreferrer" className={styles.link}>
             <FiGithub /> GitHub
           </a>
-          <a href="mailto:contacto@mathstats.com" className={styles.link}>
-            <FiMail /> contacto@mathstats.com
+          <a href="mailto:blrodriguez4@espe.edu.ec" className={styles.link}>
+            <FiMail /> blrodriguez4@espe.edu.ec
           </a>
+
         </div>
       </div>
     </footer>

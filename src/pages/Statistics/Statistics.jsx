@@ -3,6 +3,8 @@ import { FiBarChart2 } from 'react-icons/fi'
 import { calculateAllStatistics } from '../../utils/statistics.js'
 import { CalculatorForm } from '../../components/CalculatorForm/CalculatorForm.jsx'
 import { ResultCard } from '../../components/ResultCard/ResultCard.jsx'
+import { saveCalculation } from '../../services/historyService.js'
+import { getCurrentUser } from '../../services/authService.js'
 import styles from './Statistics.module.css'
 
 export function Statistics() {
@@ -15,6 +17,12 @@ export function Statistics() {
     if (nums.length === 0) return
     const stats = calculateAllStatistics(nums)
     setResults(stats)
+
+    const user = getCurrentUser()
+    if (user) {
+      const resultado = `Media: ${stats.media.toFixed(2)}, Mediana: ${stats.mediana.toFixed(2)}, Moda: ${stats.moda.length ? stats.moda.join(', ') : 'No hay moda'}, Varianza: ${stats.varianza.toFixed(2)}, Desviación Estándar: ${stats.desviacionEstandar.toFixed(2)}, Rango: ${stats.rango.toFixed(2)}`
+      saveCalculation(user.id, 'Estadística', values.numeros, resultado)
+    }
   }
 
   return (

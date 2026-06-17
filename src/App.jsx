@@ -14,12 +14,16 @@ function App() {
     navigate('/')
   }
 
+  function handleLogin(userData) {
+    setUser(userData)
+  }
+
   return (
     <Layout user={user} onLogout={handleLogout}>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/registro" element={<Register />} />
+        <Route path="/login" element={<Login onLogin={handleLogin} />} />
+        <Route path="/registro" element={<Register onLogin={handleLogin} />} />
         <Route path="/estadistica" element={<Statistics />} />
         <Route path="/probabilidad" element={<Probability />} />
         <Route path="/historial" element={<History />} />

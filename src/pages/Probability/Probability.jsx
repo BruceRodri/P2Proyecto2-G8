@@ -3,6 +3,8 @@ import { FiTrendingUp } from 'react-icons/fi'
 import { calcPermutacion, calcCombinacion, calcProbabilidadSimple } from '../../utils/probability.js'
 import { CalculatorForm } from '../../components/CalculatorForm/CalculatorForm.jsx'
 import { ResultCard } from '../../components/ResultCard/ResultCard.jsx'
+import { saveCalculation } from '../../services/historyService.js'
+import { getCurrentUser } from '../../services/authService.js'
 import styles from './Probability.module.css'
 
 export function Probability() {
@@ -13,13 +15,25 @@ export function Probability() {
   function handlePerm(values) {
     const n = Number(values.n)
     const r = Number(values.r)
-    setPermResult({ n, r, resultado: calcPermutacion(n, r) })
+    const resultado = calcPermutacion(n, r)
+    setPermResult({ n, r, resultado })
+
+    const user = getCurrentUser()
+    if (user) {
+      saveCalculation(user.id, 'Permutación', `n=${n}, r=${r}`, `P(${n}, ${r}) = ${resultado}`)
+    }
   }
 
   function handleComb(values) {
     const n = Number(values.n)
     const r = Number(values.r)
-    setCombResult({ n, r, resultado: calcCombinacion(n, r) })
+    const resultado = calcCombinacion(n, r)
+    setCombResult({ n, r, resultado })
+
+    const user = getCurrentUser()
+    if (user) {
+      saveCalculation(user.id, 'Combinación', `n=${n}, r=${r}`, `C(${n}, ${r}) = ${resultado}`)
+    }
   }
 
   function handleProb(values) {
@@ -27,6 +41,11 @@ export function Probability() {
     const p = Number(values.posibles)
     const r = calcProbabilidadSimple(f, p)
     setProbResult({ f, p, resultado: r, porcentaje: r * 100 })
+
+    const user = getCurrentUser()
+    if (user) {
+      saveCalculation(user.id, 'Probabilidad Simple', `favorables=${f}, posibles=${p}`, `P = ${r.toFixed(4)} (${(r * 100).toFixed(1)}%)`)
+    }
   }
 
   return (

@@ -5,7 +5,7 @@ const team = [
   {
     nombre: 'Bruce Rodríguez',
     carrera: 'Ingeniería Tecnologías de la Información',
-    biografia: 'Hola que hace',
+    biografia: 'Bruce Rodríguez es estudiante de Ingeniería en Tecnologías de la Información, con especial interés en el área de la ciberseguridad.',
     foto: 'https://occ-0-8407-2218.1.nflxso.net/dnm/api/v6/6AYY37jfdO6hpXcMjf9Yu5cnmO0/AAAABYzFu76zSr6jrM942JI0l4o5RMfcnSL6j1SjIX6PmNQNR-tSKFnRRxJesBwpSiwpmy50JDWqODp_EJDvPeLy9EfAsJYNupaPLnNz.jpg?r=e8b',
   },
   {

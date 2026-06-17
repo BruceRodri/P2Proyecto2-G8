@@ -4,7 +4,7 @@ import { FiUserPlus } from 'react-icons/fi'
 import { registerUser, setCurrentUser } from '../../services/authService.js'
 import styles from './Register.module.css'
 
-export function Register() {
+export function Register({ onLogin }) {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
@@ -17,6 +17,7 @@ export function Register() {
     try {
       const user = await registerUser(nombre, correo, contraseña)
       setCurrentUser(user)
+      onLogin(user)
       navigate('/')
     } catch {
       setError('Error al registrar usuario')
