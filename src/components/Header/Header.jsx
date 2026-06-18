@@ -19,6 +19,8 @@ export function Header({ user, onLogout }) {
           <Link to="/informacion" className={styles.link}><FiFileText /> Info</Link>
           <Link to="/equipo" className={styles.link}><FiUsers /> Equipo</Link>
           <Link to="/contacto" className={styles.link}><FiMail /> Contacto</Link>
+          {/* SI HAY USUARIO: MUESTRA HISTORIAL Y CERRAR SESION */}
+          {/* SI NO HAY USUARIO: MUESTRA INICIAR SESION Y REGISTRARSE */}
           {user ? (
             <>
               <Link to="/historial" className={styles.link}><FiClock /> Historial</Link>
@@ -38,6 +40,7 @@ export function Header({ user, onLogout }) {
   )
 }
 
+// VALIDACION DE PROPS CON PROP-TYPES
 Header.propTypes = {
   user: PropTypes.shape({
     nombre: PropTypes.string,

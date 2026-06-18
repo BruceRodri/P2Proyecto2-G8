@@ -1,3 +1,4 @@
+// SERVICIO DE NOTICIAS - CONSULTA EL PROXY DEL BACKEND QUE A SU VEZ LLAMA A NEWSAPI
 const API_URL = 'http://localhost:4000/api/noticias'
 
 export const fetchMathNews = async () => {

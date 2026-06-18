@@ -1,3 +1,5 @@
+// PAGINA DE INICIO - PRESENTA LA APLICACION CON TARJETAS DE ACCESO RAPIDO A CADA SECCION
+// USA Link DE REACT ROUTER PARA NAVEGACION SIN RECARGAR
 import { Link } from 'react-router-dom'
 import { FiBarChart2, FiTrendingUp, FiClock, FiFileText } from 'react-icons/fi'
 import styles from './Home.module.css'
@@ -14,6 +16,7 @@ export function Home() {
         </p>
       </section>
 
+      {/* TARJETAS DE NAVEGACION A LAS SECCIONES PRINCIPALES */}
       <section className={styles.cards}>
         <Link to="/estadistica" className={styles.card}>
           <FiBarChart2 className={styles.cardIcon} />

@@ -1,3 +1,5 @@
+// PAGINA DE ESTADISTICA - CALCULA MEDIA, MEDIANA, MODA, VARIANZA, DESVIACION Y RANGO
+// USA LAS FUNCIONES DE utils/statistics.js PARA LOS CALCULOS DEL LADO DEL CLIENTE
 import { useState } from 'react'
 import { FiBarChart2 } from 'react-icons/fi'
 import { calculateAllStatistics } from '../../utils/statistics.js'
@@ -12,16 +14,19 @@ export function Statistics() {
   const [numerosRaw, setNumerosRaw] = useState('')
 
   function handleSubmit(values) {
+    // CONVIERTE EL STRING DE NUMEROS SEPARADOS POR COMA EN UN ARREGLO
     const nums = values.numeros.split(',').map(s => s.trim()).filter(Boolean).map(Number)
     setNumerosRaw(values.numeros)
     if (nums.length === 0) return
+    // CALCULA TODAS LAS MEDIDAS ESTADISTICAS USANDO LA UTILERIA
     const stats = calculateAllStatistics(nums)
     setResults(stats)
 
+    // SI EL USUARIO ESTA LOGUEADO, GUARDA EL CALCULO EN EL HISTORIAL
     const user = getCurrentUser()
     if (user) {
       const resultado = `Media: ${stats.media.toFixed(2)}, Mediana: ${stats.mediana.toFixed(2)}, Moda: ${stats.moda.length ? stats.moda.join(', ') : 'No hay moda'}, Varianza: ${stats.varianza.toFixed(2)}, Desviación Estándar: ${stats.desviacionEstandar.toFixed(2)}, Rango: ${stats.rango.toFixed(2)}`
-      saveCalculation(user.id, 'Estadística', values.numeros, resultado)
+      saveCalculation(user.id, 'Estadística', values.numeros, resultado).catch(console.error)
     }
   }
 
@@ -44,6 +49,7 @@ export function Statistics() {
             </p>
           )}
         </div>
+        {/* MUESTRA LOS RESULTADOS USANDO EL COMPONENTE REUTILIZABLE ResultCard */}
         {results && (
           <div className={styles.results}>
             <h2 className={styles.resultsTitle}>Resultados</h2>

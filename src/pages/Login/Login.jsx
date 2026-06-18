@@ -1,3 +1,4 @@
+// PAGINA DE INICIO DE SESION - ENVIA CREDENCIALES AL BACKEND Y GUARDA EL USUARIO EN LOCALSTORAGE
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { FiLogIn } from 'react-icons/fi'
@@ -8,6 +9,7 @@ export function Login({ onLogin }) {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
+  // ENVIA CORREO Y CONTRASENA AL BACKEND, SI ES EXITOSO GUARDA EN LOCALSTORAGE Y REDIRIGE
   async function handleSubmit(e) {
     e.preventDefault()
     const formData = new FormData(e.target)

@@ -1,3 +1,4 @@
+// USA TRES FORMULARIOS INDEPENDIENTES, CADA UNO CON SU PROPIO ESTADO
 import { useState } from 'react'
 import { FiTrendingUp } from 'react-icons/fi'
 import { calcPermutacion, calcCombinacion, calcProbabilidadSimple } from '../../utils/probability.js'
@@ -8,11 +9,13 @@ import { getCurrentUser } from '../../services/authService.js'
 import styles from './Probability.module.css'
 
 export function Probability() {
+  // ESTADO INDEPENDIENTE PARA CADA TIPO DE CALCULO
   const [permResult, setPermResult] = useState(null)
   const [combResult, setCombResult] = useState(null)
   const [probResult, setProbResult] = useState(null)
 
   function handlePerm(values) {
+    // CALCULA PERMUTACION P(N, R) = N! / (N-R)!
     const n = Number(values.n)
     const r = Number(values.r)
     const resultado = calcPermutacion(n, r)
@@ -20,11 +23,12 @@ export function Probability() {
 
     const user = getCurrentUser()
     if (user) {
-      saveCalculation(user.id, 'Permutación', `n=${n}, r=${r}`, `P(${n}, ${r}) = ${resultado}`)
+      saveCalculation(user.id, 'Permutación', `n=${n}, r=${r}`, `P(${n}, ${r}) = ${resultado}`).catch(console.error)
     }
   }
 
   function handleComb(values) {
+    // CALCULA COMBINACION C(N, R) = N! / (R! * (N-R)!)
     const n = Number(values.n)
     const r = Number(values.r)
     const resultado = calcCombinacion(n, r)
@@ -32,11 +36,12 @@ export function Probability() {
 
     const user = getCurrentUser()
     if (user) {
-      saveCalculation(user.id, 'Combinación', `n=${n}, r=${r}`, `C(${n}, ${r}) = ${resultado}`)
+      saveCalculation(user.id, 'Combinación', `n=${n}, r=${r}`, `C(${n}, ${r}) = ${resultado}`).catch(console.error)
     }
   }
 
   function handleProb(values) {
+    // CALCULA PROBABILIDAD SIMPLE P = FAVORABLES / POSIBLES
     const f = Number(values.favorables)
     const p = Number(values.posibles)
     const r = calcProbabilidadSimple(f, p)
@@ -44,7 +49,7 @@ export function Probability() {
 
     const user = getCurrentUser()
     if (user) {
-      saveCalculation(user.id, 'Probabilidad Simple', `favorables=${f}, posibles=${p}`, `P = ${r.toFixed(4)} (${(r * 100).toFixed(1)}%)`)
+      saveCalculation(user.id, 'Probabilidad Simple', `favorables=${f}, posibles=${p}`, `P = ${r.toFixed(4)} (${(r * 100).toFixed(1)}%)`).catch(console.error)
     }
   }
 

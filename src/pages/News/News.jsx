@@ -1,3 +1,4 @@
+// PAGINA DE NOTICIAS - CONSUMA EL PROXY DEL BACKEND QUE A SU VEZ LLAMA A NEWSAPI
 import { useState, useEffect } from 'react'
 import { FiFileText } from 'react-icons/fi'
 import { fetchMathNews } from '../../services/newsService.js'
@@ -8,6 +9,7 @@ export function News() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState('')
 
+  // useEffect CARGA LAS NOTICIAS AL MONTAR EL COMPONENTE
   useEffect(() => {
     async function load() {
       try {
@@ -28,6 +30,7 @@ export function News() {
       <p className={styles.desc}>Noticias de matemáticas, ciencia y tecnología.</p>
       {loading && <p className={styles.status}>Cargando noticias...</p>}
       {error && <p className={styles.status}>{error}</p>}
+      {/* TARJETAS DE NOTICIAS CON IMAGEN, TITULO, DESCRIPCION Y ENLACE */}
       <div className={styles.grid}>
         {articles.map((a, i) => (
           <article key={i} className={styles.card}>

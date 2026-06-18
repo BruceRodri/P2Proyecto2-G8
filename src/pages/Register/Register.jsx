@@ -1,3 +1,4 @@
+// PAGINA DE REGISTRO - CREA UN NUEVO USUARIO EN LA BD Y LO LOGUEA AUTOMATICAMENTE
 import { useState } from 'react'
 import { useNavigate, Link } from 'react-router-dom'
 import { FiUserPlus } from 'react-icons/fi'
@@ -8,6 +9,7 @@ export function Register({ onLogin }) {
   const [error, setError] = useState('')
   const navigate = useNavigate()
 
+  // ENVIA NOMBRE, CORREO Y CONTRASENA AL BACKEND PARA CREAR EL USUARIO
   async function handleSubmit(e) {
     e.preventDefault()
     const formData = new FormData(e.target)

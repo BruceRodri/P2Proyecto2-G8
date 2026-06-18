@@ -9,6 +9,7 @@ export function History() {
   const [loading, setLoading] = useState(true)
   const user = getCurrentUser()
 
+  // useEffect CARGA EL HISTORIAL AL MONTAR EL COMPONENTE O CUANDO CAMBIA EL USUARIO
   useEffect(() => {
     async function load() {
       if (!user) {
@@ -51,6 +52,7 @@ export function History() {
       {history.length === 0 ? (
         <p className={styles.empty}>No hay cálculos registrados aún.</p>
       ) : (
+        // TABLA CON TIPO, DATOS INGRESADOS, RESULTADO Y FECHA DE CADA CALCULO
         <div className={styles.tableWrapper}>
           <table className={styles.table}>
             <thead>

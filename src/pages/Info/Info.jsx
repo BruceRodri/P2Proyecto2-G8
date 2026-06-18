@@ -1,3 +1,5 @@
+// PAGINA INFORMATIVA - EXPLICA LOS CONCEPTOS DE ESTADISTICA Y PROBABILIDAD
+// CONTENIDO ESTATICO PARA APOYAR AL USUARIO
 import { FiFileText } from 'react-icons/fi'
 import styles from './Info.module.css'
 

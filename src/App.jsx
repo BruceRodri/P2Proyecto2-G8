@@ -1,3 +1,4 @@
+// COMPONENTE PRINCIPAL - MANEJA EL ESTADO DEL USUARIO Y LAS RUTAS
 import { useState } from 'react'
 import { Routes, Route, useNavigate } from 'react-router-dom'
 import { Layout } from './components/Layout/Layout.jsx'
@@ -5,15 +6,18 @@ import { Home, Login, Register, Statistics, Probability, History, News, Info, Te
 import { getCurrentUser, logoutUser } from './services/authService.js'
 
 function App() {
+  // ESTADO DEL USUARIO: AL INICIAR LEE DE LOCALSTORAGE SI HAY SESION ACTIVA
   const [user, setUser] = useState(getCurrentUser())
   const navigate = useNavigate()
 
+  // CIERRA SESION: LIMPIA LOCALSTORAGE Y REDIRIGE AL INICIO
   function handleLogout() {
     logoutUser()
     setUser(null)
     navigate('/')
   }
 
+  // ACTUALIZA EL ESTADO CUANDO EL USUARIO INICIA SESION O SE REGISTRA
   function handleLogin(userData) {
     setUser(userData)
   }

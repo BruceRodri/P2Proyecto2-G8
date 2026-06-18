@@ -1,3 +1,4 @@
+// TARJETA GENERICA PARA MOSTRAR UN RESULTADO - RECIBE UNA ETIQUETA Y UN VALOR
 import PropTypes from 'prop-types'
 import styles from './ResultCard.module.css'
 
